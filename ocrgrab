@@ -7,7 +7,7 @@ zbarimg "$tmpPic" | cut -d: -f2- > "$tmpTxt"
 if [ -s "$tmpTxt" ]; then
 	xclip -sel clip "$tmpTxt" && notify-send "Grabbed barcode"
 else
-	tesseract "$tmpPic" stdout --oem 1 -l eng+ell+osd > "$tmpTxt"
+	tesseract "$tmpPic" stdout --oem 1 -l eng+osd > "$tmpTxt"
 	if [ -s "$tmpTxt" ]; then
 		xclip -sel clip "$tmpTxt" && notify-send "Grabbed text"
 	else

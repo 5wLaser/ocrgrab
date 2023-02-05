@@ -1,7 +1,7 @@
 #!/bin/sh
 tmpPic="$(mktemp)"
 tmpTxt="$(mktemp)"
-eval "shotgun -f pam $(hacksaw -f '-i %i -g %g') '$tmpPic'"
+eval "shotgun -f pam $(hacksaw -f '-i %i -g %g' || notify-send "Cancelling" && kill 0) '$tmpPic'"
 
 zbarimg "$tmpPic" | cut -d: -f2- > "$tmpTxt"
 if [ -s "$tmpTxt" ]; then
